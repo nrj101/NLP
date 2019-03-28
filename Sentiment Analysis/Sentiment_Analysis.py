@@ -55,5 +55,24 @@ for x in X :
     
 # Creating Tfidf matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
-vectorizer = TfidfVectorizer(max_df=0.6, min_df=50, stop_words=stopwords.words("english"))
-cleaned_reviews = vectorizer.fit_transform(cleaned_reviews).toarray()
+vectorizer = TfidfVectorizer(max_features = 3000,max_df=0.65, min_df=50, stop_words=stopwords.words("english"))
+X = vectorizer.fit_transform(cleaned_reviews).toarray()
+
+# words = vectorizer.get_feature_names()
+
+# Creating Train and Test Sets
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Training the machine learning model
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Predicting Results on Test Set
+y_pred = model.predict(X_test)
+
+# Analysing the confusion matrix
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+
