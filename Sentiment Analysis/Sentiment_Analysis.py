@@ -79,11 +79,11 @@ cm3 = confusion_matrix(y_test, y_pred3)
 
 
 """
-Results :           MODEL                   10 fold Cross_Validation Accuracy
+Results :           MODEL                   10 fold Cross_Validation Accuracy                 Test Set Accuracy
 
-            Logistic Regression :                     0.8512                   model1
-            Support Vector Class. :                  0.8487                    model2
-            Random Forest Class. :                   0.8324                    model3
+            Logistic Regression :                    0.8512               model1                    0.8575
+            Support Vector Class. :                  0.8487               model2                    0.8300
+            Random Forest Class. :                   0.8324               model3                    0.8275
 """
 
 
