@@ -5,11 +5,10 @@
 
 # Importing the libraries
 import numpy as np
-import re
 import nltk
 #nltk.download('stopwords')
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+#from nltk.stem import WordNetLemmatizer
 import pickle
 from sklearn.datasets import load_files
 
@@ -34,26 +33,11 @@ with open("y.pickle","rb") as f:
 """
 
 # PreProcessing the reviews
+from TextPreprocessor import TextPreprocessor    
+cleaner = TextPreprocessor()
+cleaned_reviews = cleaner.clean_text(X) 
 
-cleaned_reviews = []
-#lemmatizer = WordNetLemmatizer()
-for x in X :
-    x = str(x).replace(r"\n"," ")       #x = re.sub(r"\n"," ", str(x)) Not working
-    # Try replacing words like don't, won't, ain't, couldn't ..... properly
-    x = re.sub(r"\W", " ", x)
-    x = x.lower()
-    x = re.sub(r"\d", " ", x)
-    x = re.sub(r"\s[a-zA-Z]\s", " ", x)
-    x = re.sub(r"^[a-zA-Z]\s+", "", x)
-    x = re.sub(r"\s+$", "", x)
-    x = re.sub(r"^\s+", "", x)
-    x = re.sub(r"\s+", " ", x)
-    #words = nltk.word_tokenize(x)
-    #newWords = [word for word in words if word not in stopwords.words('english')]
-    #newWords = [lemmatizer.lemmatize(word) for word in words if word not in stopwords.words('english')]
-    #cleaned_reviews.append(' '.join(newWords))
-    cleaned_reviews.append(x)
-    
+
 # Creating Tfidf matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(max_features = 3000,max_df=0.65, min_df=50, stop_words=stopwords.words("english"))
@@ -95,7 +79,8 @@ cm3 = confusion_matrix(y_test, y_pred3)
 
 
 """
-Results :           MODEL                    Cross_Validation Accuracy
+Results :           MODEL                   10 fold Cross_Validation Accuracy
+
             Logistic Regression :                     0.8512                   model1
             Support Vector Class. :                  0.8487                    model2
             Random Forest Class. :                   0.8324                    model3
