@@ -32,7 +32,6 @@ class TweetsPreprocessor:
             x = re.sub(r"\s+https://t.co/[a-zA-Z0-9]*$", " ", x)
             x = re.sub(r"\s+https://t.co/[a-zA-Z0-9]*\s+", " ", x)
             x = re.sub(r"\W", " ", x)
-            x = x.lower()
             x = re.sub(r"\d", " ", x)
             x = re.sub(r"\s[a-zA-Z]\s", " ", x)
             x = re.sub(r"^[a-zA-Z]\s+", "", x)
