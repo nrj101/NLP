@@ -91,7 +91,7 @@ def transform_sentences(sentences, word2idx):
 
 new_sentences = transform_sentences(sentences, word2idx)
 
-# 4. Prepare Bi-grams
+# 4. Learn probability distribution of bi-grams in the above dataset
 def get_bigram_probs(sentences, word2idx):
     V = len(word2idx)
     bigram_matrix = np.ones((V,V))              # not initializing with zeros so that there is some minimalistic probability for all bigrams.
