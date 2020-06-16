@@ -136,10 +136,10 @@ test_sentence = transform_sentences(["This is a delicious recipe from a popular 
 print("Sentence: {}  Score: {}".format(inv_transform_sentence(test_sentence[0], idx2word), get_sentence_score(test_sentence[0], bigram_probs)) )
 
 # Test on an incorrect new sentence
-test_sentence = transform_sentences(["kind Food of like I what morning the in."], word2idx)
+test_sentence = transform_sentences(["kind Food of like I what morning the in"], word2idx)
 print("Sentence: {}  Score: {}".format(inv_transform_sentence(test_sentence[0], idx2word), get_sentence_score(test_sentence[0], bigram_probs)) )
 
-# Remove the .("dot") from the above sentence to see the score improving a bit.
+# Add the .("dot") at the end of the above sentence to see the score improving a bit.
 test_sentence = transform_sentences(["kind Food of like I what morning the in."], word2idx)
 print("Sentence: {}  Score: {}".format(inv_transform_sentence(test_sentence[0], idx2word), get_sentence_score(test_sentence[0], bigram_probs)) )
 
